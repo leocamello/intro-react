@@ -27,7 +27,6 @@ class App extends React.Component {
     });
   }
 
-  /*Check out this addAssignment method*/
   addAssignment(assignmentName) {
     this.setState({
       assignments: this.state.assignments.concat(assignmentName)
@@ -66,18 +65,17 @@ class App extends React.Component {
       );
     }
 
-    /* Change below to render students*/
-
-    /*if (this.state.buttonClicked === "students") {
+    /*Render students*/
+    if (this.state.buttonClicked === "students") {
       tabChoice = (
         <List
-          placeholder="Add Assignment..." 
-          currList={this.state.assignments}
-          addFunction={this.addAssignment}
+          placeholder="Add Student..." 
+          currList={this.state.students}
+          addFunction={this.addStudent}
           title="Student Roster"
         />
       );
-    }*/
+    }
 
     /* Uncomment lines below to render grades*/
     /*if (this.state.buttonClicked === "grades") {
