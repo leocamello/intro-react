@@ -77,8 +77,8 @@ class App extends React.Component {
       );
     }
 
-    /* Uncomment lines below to render grades*/
-    /*if (this.state.buttonClicked === "grades") {
+    /*Render grades*/
+    if (this.state.buttonClicked === "grades") {
       tabChoice = (
         <Table
           tableNames={this.state.assignments}
@@ -87,7 +87,7 @@ class App extends React.Component {
           data={this.state.grades}
         />
       );
-    }*/
+    }
 
     return (
       <div>
