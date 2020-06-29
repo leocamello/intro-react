@@ -1,5 +1,8 @@
 import React from "react";
+// eslint-disable-next-line
 import Table from "./Table";
+// eslint-disable-next-line
+import List from "./List";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,11 +11,13 @@ class App extends React.Component {
     this.state = {
       buttonClicked: "",
       assignments: [],
+      students: [],
       grades: {}
     };
 
     this.handleButtonClicked = this.handleButtonClicked.bind(this);
     this.addAssignment = this.addAssignment.bind(this);
+    this.addStudent = this.addStudent.bind(this);
     this.addGrade = this.addGrade.bind(this);
   }
 
@@ -25,6 +30,12 @@ class App extends React.Component {
   addAssignment(assignmentName) {
     this.setState({
       assignments: this.state.assignments.concat(assignmentName)
+    });
+  }
+
+  addStudent(studentName) {
+    this.setState({
+      students: this.state.students.concat(studentName)
     });
   }
 
@@ -42,10 +53,47 @@ class App extends React.Component {
   render() {
     let tabChoice = <div />;
 
+    /*Render assignments*/
+    if (this.state.buttonClicked === "assignments") {
+      tabChoice = (
+        <List
+          placeholder="Add Assignment..."
+          currList={this.state.assignments}
+          addFunction={this.addAssignment}
+          title="Assignments"
+        />
+      );
+    }
+
+    /*Render students*/
+    if (this.state.buttonClicked === "students") {
+      tabChoice = (
+        <List
+          placeholder="Add Student..." 
+          currList={this.state.students}
+          addFunction={this.addStudent}
+          title="Student Roster"
+        />
+      );
+    }
+
+    /*Render grades*/
+    if (this.state.buttonClicked === "grades") {
+      tabChoice = (
+        <Table
+          tableNames={this.state.assignments}
+          rows={this.state.students}
+          addFunction={this.addGrade}
+          data={this.state.grades}
+        />
+      );
+    }
+
     return (
       <div>
         <div className="Box Box--spacious f4">
           <div className="Box-header">
+            <h3 className="Box-title d-flex flex-justify-center">GradeBook</h3>
           </div>
         </div>
         <nav className="UnderlineNav d-flex flex-justify-center">
